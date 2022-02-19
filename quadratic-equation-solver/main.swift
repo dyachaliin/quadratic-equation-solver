@@ -9,10 +9,10 @@ import Foundation
 
 func quadraticEquationSolver(a: Double, b: Double, c: Double) {
     if a == 0 {
-        assertionFailure("Error. a cannot be 0")
+        fatalError("Error. a cannot be 0")
     }
     
-    var discriminantRes: [Double] = []
+    var discriminantRes: [Int] = []
     print("Equation is: (\(a)) x^2 + (\(b)) x + (\(c)) = 0")
     
     let discriminant = b * b - 4 * a * c
@@ -42,7 +42,7 @@ func inputCoeff(coefficient: String) -> Double {
     while flag {
         print("\(coefficient) = ", terminator: "")
         let validCoeff = readLine()!
-        if (Double(validCoeff)) != nil {
+        if (Int(validCoeff)) != nil {
             flag = false
             return Double(validCoeff)!
         } else {
