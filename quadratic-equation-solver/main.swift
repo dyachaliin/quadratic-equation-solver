@@ -8,6 +8,10 @@
 import Foundation
 
 func quadraticEquationSolver(a: Double, b: Double, c: Double) {
+    if a == 0 {
+        assertionFailure("Error. a cannot be 0")
+    }
+    
     var discriminantRes: [Double] = []
     print("Equation is: (\(a)) x^2 + (\(b)) x + (\(c)) = 0")
     
@@ -33,3 +37,33 @@ func quadraticEquationSolver(a: Double, b: Double, c: Double) {
     
 }
 
+func inputCoeff(coefficient: String) -> Double {
+    var flag = true
+    while flag {
+        print("\(coefficient) = ", terminator: "")
+        let validCoeff = readLine()!
+        if (Double(validCoeff)) != nil {
+            flag = false
+            return Double(validCoeff)!
+        } else {
+            print("You've entered \(validCoeff), it's not a real number!")
+        }
+    }
+}
+
+var currentState: String
+
+print("Choose mode: Press 1 for Interactive mode or 2 for Noninteractive")
+
+let mode = Int(readLine()!)
+
+if (mode == 1) {
+    print("Enter real numbers")
+    
+    let a = inputCoeff(coefficient: "a")
+    let b = inputCoeff(coefficient: "b")
+    let c = inputCoeff(coefficient: "c")
+    
+    quadraticEquationSolver(a: a, b: b, c: c)
+    
+}
