@@ -8,6 +8,10 @@
 import Foundation
 
 func quadraticEquationSolver(a: Double, b: Double, c: Double) {
+    if a == 0 {
+        assertionFailure("Error. a cannot be 0")
+    }
+    
     var discriminantRes: [Double] = []
     print("Equation is: (\(a)) x^2 + (\(b)) x + (\(c)) = 0")
     
@@ -61,31 +65,32 @@ if (mode == 1) {
     let c = inputCoeff(coefficient: "c")
     
     quadraticEquationSolver(a: a, b: b, c: c)
+    
 } else if mode == 2 {
     print("Enter path to file")
+    
     let path = readLine()!
     
     let filemgr = FileManager.default
     if filemgr.fileExists(atPath: path) {
         print("File exists")
-        
         let readFile = try String(contentsOfFile: path, encoding: String.Encoding.utf8)
         let arrayFromString = readFile.components(separatedBy: [" ", "\n"])
         
-        print(arrayFromString)
+        
         var a: Double, b: Double, c: Double
+        
         if Double(arrayFromString[0]) != nil {
             a = Double(arrayFromString[0])!
-        } else if Double(arrayFromString[1]) != nil {
-            b = Double(arrayFromString[1])!
-        } else if Double(arrayFromString[2]) != nil {
-            c = Double(arrayFromString[2])!
-        } else {
-            print("Something wrong with the numbers in file")
-        }
-        quadraticEquationSolver(a: a, b: b, c: c)
-        else {
-            print("Something wrong with the numbers in file")
+            if Double(arrayFromString[1]) != nil {
+                b = Double(arrayFromString[1])!
+                if Double(arrayFromString[2]) != nil {
+                    c = Double(arrayFromString[2])!
+                    quadraticEquationSolver(a: a, b: b, c: c)
+                }
+            }
+        }  else {
+            print("Error. Something wrong with the numbers in file")
         }
     }
     else {
